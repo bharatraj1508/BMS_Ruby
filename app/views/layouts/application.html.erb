@@ -11,6 +11,10 @@
   </head>
 
   <body>
-    <%= yield %>
+    <% if user_signed_in? %>
+      <%= yield %>
+    <% else %>
+      <%= yield %>
+    <% end %>
   </body>
 </html>
