@@ -20,7 +20,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_21_003059) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "roles", default: [], array: true
-    t.boolean "archive"
+    t.boolean "archive", default: false
     t.index ["account_id"], name: "index_account_users_on_account_id"
     t.index ["user_id"], name: "index_account_users_on_user_id"
   end
