@@ -15,14 +15,13 @@ Rails.application.routes.draw do
       sessions: "users/sessions",
       registrations: "users/registrations",
       # invitations: "users/invitations",
-      passwords: "users/passwords"
+      passwords: "users/passwords",
+      confirmations: "users/confirmations"
     }
   
   # authenticated :user, lambda { |u| u.super_admin? } do
   # end
 
-  # Defines the root path route ("/")
-  # root "posts#index"
 
   root to: 'pages#index'
 end

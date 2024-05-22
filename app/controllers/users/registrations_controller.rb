@@ -10,9 +10,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    super
+    if resource.save
+      create_primary_account
+    end
+  end
 
   # GET /resource/edit
   # def edit
@@ -56,7 +59,19 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # The path used after sign up for inactive accounts.
-  # def after_inactive_sign_up_path_for(resource)
-  #   super(resource)
-  # end
+  def after_inactive_sign_up_path_for(resource)
+    new_user_session_path
+  end
+
+
+  private
+
+  # Creates a primary account for the user as well as the account_user record and sets the role to admin.
+  def create_primary_account
+    account = resource.owned_accounts.new(name: resource.company_name)
+    account.account_users.new(user: resource) # add roles for the user here as well
+    account.save
+
+    # session[:account_id] = resource&.accounts&.first&.id
+  end
 end

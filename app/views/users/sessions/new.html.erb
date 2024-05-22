@@ -105,6 +105,16 @@
             <% end %>
             <!-- End Checkbox -->
 
+            <div>
+              <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
+                <p class="mt-2 text-sm text-gray-600 dark:text-neutral-400">
+                  Didn't receive confirmation instructions? 
+                  <%= link_to "Send again", new_confirmation_path(resource_name), class: "text-sm text-blue-600 decoration-2 hover:underline font-medium" %>
+                </p>
+              <% end %>
+            </div>
+            
+
             <%= f.submit "Log in", class:"w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none" %>
             
           </div>
@@ -115,4 +125,3 @@
     </div>
   </div>
 </div>
-<%= render "users/shared/links" %>
