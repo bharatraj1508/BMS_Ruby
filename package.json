@@ -4,6 +4,7 @@
   "dependencies": {
     "@hotwired/stimulus": "^3.2.2",
     "@hotwired/turbo-rails": "^8.0.4",
+    "@stimulus-components/dropdown": "^3.0.0",
     "autoprefixer": "^10.4.19",
     "esbuild": "^0.21.3",
     "postcss": "^8.4.38",
@@ -13,5 +14,8 @@
   "scripts": {
     "build": "esbuild app/javascript/*.* --bundle --sourcemap --format=esm --outdir=app/assets/builds --public-path=/assets",
     "build:css": "tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css --minify"
+  },
+  "devDependencies": {
+    "@tailwindcss/forms": "^0.5.7"
   }
 }

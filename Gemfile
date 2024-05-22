@@ -71,3 +71,5 @@ group :test do
 end
 
 gem 'devise', '~> 4.9', '>= 4.9.4'
+gem 'activerecord-multi-tenant', '~> 2.4'
+gem 'pry', '~> 0.14.2'
