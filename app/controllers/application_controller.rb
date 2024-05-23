@@ -17,6 +17,7 @@ class ApplicationController < ActionController::Base
     def after_sign_in_path_for(resource_or_scope)
         session[:account_id] = resource&.accounts&.first&.id || resource_or_scope&.accounts&.first&.id
         stored_location_for(resource_or_scope) || super
+        home_path
     end
 
     def after_sign_out_path_for(resource_or_scope)
