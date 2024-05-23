@@ -24,5 +24,9 @@ Rails.application.routes.draw do
 
   get "/home", to: "home#index"
 
+  # Account Routes
+  resources :accounts, only: [:new, :create]
+  patch "/accounts/switch", to: "accounts#switch"
+
   root to: 'pages#index'
 end

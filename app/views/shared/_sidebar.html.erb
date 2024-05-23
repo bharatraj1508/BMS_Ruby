@@ -15,24 +15,23 @@
 
     <div class="px-6 mt-6">
         <div data-controller="dropdown">
-            <button data-action="dropdown#toggle click@window->dropdown#hide" class="w-full text-start border border-gray-300 dark:border-gray-500 flex items-center gap-x-8 py-2 px-2.5 text-sm text-gray-700 rounded-lg hover:bg-gray-100 dark:bg-neutral-800 dark:hover:bg-neutral-700 dark:text-neutral-400 dark:hover:text-neutral-300" type="button">
+            <button data-action="dropdown#toggle click@window->dropdown#hide" class="w-full border border-gray-300 dark:border-gray-500 flex justify-between items-center p-2 text-sm text-gray-700 rounded-lg hover:bg-gray-100 dark:bg-neutral-800 dark:hover:bg-neutral-700 dark:text-neutral-400 dark:hover:text-neutral-300" type="button">
                 <%= current_account.name %>
-                <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                <svg class="w-5 h-5 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m8 15 4 4 4-4m0-6-4-4-4 4"/>
                 </svg>
             </button>
 
             <div data-dropdown-target="menu" class="z-10 absolute hidden bg-white divide-y divide-gray-100 w-44 rounded-lg shadow dark:bg-neutral-900 dark:divide-gray-600">
                 <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDividerButton">
-                    <li>
-                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-neutral-600 dark:hover:text-white">Account 1</a>
-                    </li>
-                    <li>
-                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-neutral-600 dark:hover:text-white">Account 2</a>
-                    </li>
+                    <% current_user.accounts.each do |account| %>
+                        <li class="block px-4 py-2 text-start hover:bg-gray-100 dark:hover:bg-neutral-600 dark:hover:text-white">
+                            <%= button_to account.name, accounts_switch_path(account_id: account.id), method: :patch %>
+                        </li>
+                    <% end %>
                 </ul>
                 <div class="py-2">
-                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-neutral-600 dark:text-gray-200 dark:hover:text-white">Create an Account</a>
+                    <%= link_to "Create an account", new_account_path, class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-neutralg-600 dark:text-gray-200 dark:hover:text-white" %>
                 </div>
             </div>
         </div>

@@ -1,3 +1,20 @@
+<!-- Toast -->
+<% if flash[:notice].present? %>
+    <div class="flex justify-center">
+        <div class="absolute max-w-xs bg-gray-800 text-sm text-white rounded-xl shadow-lg dark:bg-neutral-900" role="alert">
+            <div class="flex p-4">
+                <%= flash[:notice] %>
+
+                <div class="ml-4">
+                <%= link_to 'X', home_path, class:"inline-flex flex-shrink-0 justify-center items-center size-5 rounded-lg text-white hover:text-white opacity-50 hover:opacity-100 focus:outline-none focus:opacity-100"%>
+                </div>
+            </div>
+        </div>
+    </div>
+<% end %>
+<!-- End Toast -->
+
+
 <p> Welcome </p>
 
 <% if user_signed_in? %>
@@ -5,9 +22,6 @@
     <p>Account Id in session: <%= session[:account_id]%></p>
     <p>Current account: <%= current_account.name %></p>
     <p>Total accounts: <%= current_user.accounts.count %></p>
-    <p>User agent: <%= Current.user_agent %></p>
-    <p>IP address: <%= Current.ip_address %></p>
-    <p>Request id: <%= Current.request_id %></p>
 <% else %>
     <p>No user signed in.</p>
     <p>Account Id in session: 
