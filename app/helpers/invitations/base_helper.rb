@@ -1,0 +1,2 @@
+module Invitations::BaseHelper
+end
