@@ -1,0 +1,50 @@
+<div class="max-w-md mx-auto bg-white p-8 mt-20 border border-gray-300 shadow-lg rounded-lg">
+    <h2 class="text-2xl font-bold text-center mb-6">Invite users to join <%= current_account.name %></h2>
+    <% if flash[:notice] %>
+        <div class="mt-2 bg-yellow-100 border border-yellow-200 text-sm text-yellow-800 rounded-lg p-4 dark:bg-yellow-800/10 dark:border-yellow-900 dark:text-yellow-500" role="alert">
+            <span class="block sm:inline"><%= flash[:notice] %></span>
+        </div>
+    <% elsif flash[:alert] %>
+        <div class="mt-2 bg-red-100 border border-red-200 text-sm text-red-800 rounded-lg p-4 dark:bg-red-800/10 dark:border-red-900 dark:text-red-500" role="alert">
+            <span class="block sm:inline"><%= flash[:alert] %></span>
+        </div>
+    <% end %>
+    <%= form_with(model: @account_invitation, url: account_invite_path, class: "space-y-4") do |f| %>
+        <div class="field">
+            <%= f.label :email, class: "block text-sm font-medium text-gray-700" %>
+            <%= f.text_field :email, class: "mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
+        </div>
+        <div>
+            <%= f.label :user_role, class: "block text-sm font-medium text-gray-700 mb-1" %>
+            <div class="grid grid-cols-2 gap-4">
+                <div>
+                <%= f.check_box :roles, { multiple: true, class: "mr-2" }, 'admin', nil %>
+                <%= f.label :admin, 'Admin', class: "text-sm font-medium text-gray-700" %>
+                </div>
+                <div>
+                <%= f.check_box :roles, { multiple: true, class: "mr-2" }, 'manager', nil %>
+                <%= f.label :manager, 'Manager', class: "text-sm font-medium text-gray-700" %>
+                </div>
+                <div>
+                <%= f.check_box :roles, { multiple: true, class: "mr-2" }, 'supervisor', nil %>
+                <%= f.label :supervisor, 'Supervisor', class: "text-sm font-medium text-gray-700" %>
+                </div>
+                <div>
+                <%= f.check_box :roles, { multiple: true, class: "mr-2" }, 'security', nil %>
+                <%= f.label :security, 'Security', class: "text-sm font-medium text-gray-700" %>
+                </div>
+                <div>
+                <%= f.check_box :roles, { multiple: true, class: "mr-2" }, 'residents', nil %>
+                <%= f.label :residents, 'Residents', class: "text-sm font-medium text-gray-700" %>
+                </div>
+            </div>
+        </div>
+        <div class="field">
+            <%= f.label :invitation_expired_at, class: "block text-sm font-medium text-gray-700 mb-1" %>
+            <%= render partial: "shared/datetime_picker", locals: { f: f }%>
+        </div>
+        <div class="actions">
+            <%= f.submit "Send Invitation", class: "w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
+        </div>
+    <% end %>
+</div>

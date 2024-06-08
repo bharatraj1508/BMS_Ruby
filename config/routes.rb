@@ -28,5 +28,13 @@ Rails.application.routes.draw do
   resources :accounts, only: [:new, :create]
   patch "/accounts/switch", to: "accounts#switch"
 
+  #invitation routes
+  get "account/invite", to: "invitations/account_invitation#new"
+  post "account/invite", to: "invitations/account_invitation#create"
+
+  get "invitations/:id/accept", to: "invitations/account_invitation#accept", as: "accept_invitation"
+  get "invitations/:id/decline", to: "invitations/account_invitation#decline", as: "decline_invitation"
+  get "invitations/:id/setup_profile", to: "invitations/account_invitation#setup_profile", as: "setup_profile"
+
   root to: 'pages#index'
 end

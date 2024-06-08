@@ -1,0 +1,14 @@
+<p>Hi there!</p>
+
+<p><%= @invitor_name %> has invited you to the <%= @account_name %> account, you can accept it through the link below.</p>
+
+<p><%= link_to "Accept invitation", @url %></p>
+
+<p>
+    Prefer not to participate? You can
+    <%= link_to "decline this invitation", decline_invitation_url(@signed_id) %>
+    and we’ll let <%= @invitor_name.first %> know. If you have any questions, just email <%= @invitor_name.first %>.
+</p>
+
+<hr>
+<p>Need help? Contact our support team and we'll get back to you in just a few minutes.</p>
