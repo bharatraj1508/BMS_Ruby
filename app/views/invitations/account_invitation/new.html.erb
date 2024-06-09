@@ -12,30 +12,30 @@
     <%= form_with(model: @account_invitation, url: account_invite_path, class: "space-y-4") do |f| %>
         <div class="field">
             <%= f.label :email, class: "block text-sm font-medium text-gray-700" %>
-            <%= f.text_field :email, class: "mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
+            <%= f.text_field :email, required: true, class: "mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
         </div>
         <div>
             <%= f.label :user_role, class: "block text-sm font-medium text-gray-700 mb-1" %>
             <div class="grid grid-cols-2 gap-4">
                 <div>
-                <%= f.check_box :roles, { multiple: true, class: "mr-2" }, 'admin', nil %>
-                <%= f.label :admin, 'Admin', class: "text-sm font-medium text-gray-700" %>
+                    <%= f.check_box :roles, { multiple: true, class: "mr-2" }, 'admin', nil %>
+                    <%= f.label :admin, 'Admin', class: "text-sm font-medium text-gray-700" %>
                 </div>
                 <div>
-                <%= f.check_box :roles, { multiple: true, class: "mr-2" }, 'manager', nil %>
-                <%= f.label :manager, 'Manager', class: "text-sm font-medium text-gray-700" %>
+                    <%= f.check_box :roles, { multiple: true, class: "mr-2" }, 'manager', nil %>
+                    <%= f.label :manager, 'Manager', class: "text-sm font-medium text-gray-700" %>
                 </div>
                 <div>
-                <%= f.check_box :roles, { multiple: true, class: "mr-2" }, 'supervisor', nil %>
-                <%= f.label :supervisor, 'Supervisor', class: "text-sm font-medium text-gray-700" %>
+                    <%= f.check_box :roles, { multiple: true, class: "mr-2" }, 'supervisor', nil %>
+                    <%= f.label :supervisor, 'Supervisor', class: "text-sm font-medium text-gray-700" %>
                 </div>
                 <div>
-                <%= f.check_box :roles, { multiple: true, class: "mr-2" }, 'security', nil %>
-                <%= f.label :security, 'Security', class: "text-sm font-medium text-gray-700" %>
+                    <%= f.check_box :roles, { multiple: true, class: "mr-2" }, 'security', nil %>
+                    <%= f.label :security, 'Security', class: "text-sm font-medium text-gray-700" %>
                 </div>
                 <div>
-                <%= f.check_box :roles, { multiple: true, class: "mr-2" }, 'residents', nil %>
-                <%= f.label :residents, 'Residents', class: "text-sm font-medium text-gray-700" %>
+                    <%= f.check_box :roles, { multiple: true, class: "mr-2" }, 'residents', nil %>
+                    <%= f.label :residents, 'Residents', class: "text-sm font-medium text-gray-700" %>
                 </div>
             </div>
         </div>

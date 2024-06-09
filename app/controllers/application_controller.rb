@@ -1,4 +1,8 @@
 class ApplicationController < ActionController::Base
+    
+    include Pundit::Authorization
+    rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+    
     protect_from_forgery with: :exception
 
     include CurrentHelper
@@ -8,6 +12,13 @@ class ApplicationController < ActionController::Base
     before_action :configure_permitted_parameters, if: :devise_controller?
 
     protected
+
+    def user_not_authorized(exception)
+        policy_name = exception.policy.class.to_s.underscore
+    
+        flash[:alert] = t "#{policy_name}.#{exception.query}", scope: "pundit", default: :default
+        redirect_back(fallback_location: home_path)
+    end
 
     def configure_permitted_parameters
         extra_keys = [:first_name, :last_name, :time_zone, :email, :password, :company_name]
