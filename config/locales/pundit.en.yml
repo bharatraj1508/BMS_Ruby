@@ -1,0 +1,6 @@
+en:
+  pundit:
+    default: "You cannot perform this action."
+    invitations/account_invitation_policy:
+      create?: "Only owners are allowed to send the invitation"
+      new?: "You are not the owner of this account to view this page"

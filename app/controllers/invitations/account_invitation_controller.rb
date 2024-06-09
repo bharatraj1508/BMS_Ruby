@@ -5,18 +5,20 @@ class Invitations::AccountInvitationController < Invitations::BaseController
 
     def new
         @account_invitation = AccountInvitation.new
+        authorize [:invitations, @account_invitation]
     end
 
     def create
+        @account_invitation = AccountInvitation.new(account_invitation_params)
+        @account_invitation.prepare_for_creation(current_account, current_account_user)
+        existing_invitation = AccountInvitation.find_by(email: @account_invitation.email, account_id: current_account.id)
+
+        authorize [:invitations, @account_invitation]
 
         if already_joined?(current_account, account_invitation_params[:email])
             redirect_to account_invite_path, alert: "This email address is already a part of this account."
             return
         end
-
-        @account_invitation = AccountInvitation.new(account_invitation_params)
-        @account_invitation.prepare_for_creation(current_account, current_account_user)
-        existing_invitation = AccountInvitation.find_by(email: @account_invitation.email, account_id: current_account.id)
 
         if AccountInvitation.expires_in_days(@account_invitation.expired_at) == 0
             flash[:alert] = "The invitation cannot be saved because it expires today. Set the expiration date more than 24 hours."
