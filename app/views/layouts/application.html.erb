@@ -13,7 +13,10 @@
 
   <body>
     <% if user_signed_in? %>
-      <div class="w-64 h-full fixed">
+      <div>
+        <%= render partial: "shared/header" %>
+      </div>
+      <div class="absolute top-0 left-0 w-64 h-full">
         <%= render partial: "shared/sidebar"%>
       </div>
       <div class="flex-grow ml-64 bg-white p-5">
